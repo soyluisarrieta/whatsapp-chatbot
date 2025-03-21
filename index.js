@@ -1,14 +1,11 @@
+require('dotenv').config();
+const { AUTH_INFO, ALLOWED_CHAT_IDS, BOT_PREFIX } = require('./config');
 const { useMultiFileAuthState, makeWASocket } = require('baileys');
 const qrcode = require('qrcode-terminal');
-require('dotenv').config();
-
-// Configuración de WhatsApp
-const ALLOWED_CHAT_IDS = JSON.parse(process.env.ALLOWED_CHAT_IDS.toString().trim());
-const BOT_PREFIX = process.env.BOT_PREFIX;
 
 async function connectToWhatsApp() {
   try {
-    const { state, saveCreds } = await useMultiFileAuthState('auth_info');
+    const { state, saveCreds } = await useMultiFileAuthState(AUTH_INFO);
     const sock = makeWASocket({
       auth: state,
       printQRInTerminal: true,
