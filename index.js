@@ -2,8 +2,9 @@ const { useMultiFileAuthState, makeWASocket } = require('baileys');
 const qrcode = require('qrcode-terminal');
 require('dotenv').config();
 
+// Configuración de WhatsApp
 const ALLOWED_CHAT_IDS = JSON.parse(process.env.ALLOWED_CHAT_IDS.toString().trim());
-const BOT_EMOJI = '🦊';
+const BOT_PREFIX = process.env.BOT_PREFIX;
 
 async function connectToWhatsApp() {
   try {
@@ -43,7 +44,7 @@ async function connectToWhatsApp() {
       const chunk = m.messages[0];
 
       // Proviene de ALLOWED_CHAT_IDS
-      if (!ALLOWED_CHAT_IDS.includes(chunk.key.remoteJid) ) {
+      if (!ALLOWED_CHAT_IDS.includes(chunk.key.remoteJid)) {
         console.log('Mensaje ignorado (no es del chat permitido).');
         return;
       }
@@ -55,8 +56,8 @@ async function connectToWhatsApp() {
         "";
 
       // Mensaje es del bot
-      if (message.startsWith(BOT_EMOJI)) {
-        console.log('Mensaje ignorado (comienza con el emoji del bot).');
+      if (message.startsWith(BOT_PREFIX) || !message) {
+        console.log('Mensaje ignorado.');
         return;
       }
 
@@ -67,14 +68,16 @@ async function connectToWhatsApp() {
       }
 
       // Enviar el mensaje de respuesta
-      const reply = `${BOT_EMOJI}\nHola, recibí tu mensaje "${message}"`;
+      const reply = `${BOT_PREFIX}\nHola, recibí tu mensaje "${message}"`;
       await sock.sendMessage(chunk.key.remoteJid, { text: reply });
       console.log('Mensaje enviado por el bot:', reply);
     });
+
   } catch (err) {
     console.error('Error al conectar:', err);
     setTimeout(connectToWhatsApp, 5000);
   }
 }
 
+// Iniciar conexión de WhatsApp
 connectToWhatsApp();
