@@ -1,5 +1,7 @@
 # WhatsApp ChatBot
 
+🌐 English | [**Español**](./README-ES.md)
+
 This chatbot, developed in Node.js and using the [Baileys](https://github.com/WhiskeySockets/Baileys) library, acts as an intermediary between WhatsApp and your API. It is agnostic to any LLM service. Ideal for custom integrations and automations without usage restrictions.
 
 ## TODO-LIST
