@@ -8,5 +8,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "baileys": "^6.7.16",
+    "qrcode-terminal": "^0.12.0"
+  }
 }
