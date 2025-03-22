@@ -12,7 +12,7 @@ Este chatbot, desarrollado en Node.js y utilizando la librería [Baileys](https:
 - [x] Reconexión automática
 - [x] Enviar y recibir mensajes de WhatsApp
 - [x] Diferenciar entre mensajes de bot y de usuario
-- [ ] Integrar LLM para responder a mensajes
+- [x] Integrar LLM para responder a mensajes
 - [ ] Soporte para respuestas de mensajes
 - [ ] Logger de mensajes, respuestas y errores
 - [ ] Redirigir comandos a una API via HTTP

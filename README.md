@@ -12,7 +12,7 @@ This chatbot, developed in Node.js and using the [Baileys](https://github.com/Wh
 - [x] Automatic reconnection
 - [x] Send and receive WhatsApp messages
 - [x] Differentiate between bot and user messages
-- [ ] Integrate LLM to respond to messages
+- [x] Integrate LLM to respond to messages
 - [ ] Support for message replies
 - [ ] Logger for messages, responses, and errors
 - [ ] Redirect commands to an API via HTTP
