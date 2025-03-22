@@ -2,6 +2,7 @@ require('dotenv').config();
 const { AUTH_INFO, ALLOWED_CHAT_IDS, BOT_PREFIX } = require('./config');
 const { useMultiFileAuthState, makeWASocket } = require('baileys');
 const qrcode = require('qrcode-terminal');
+const { fetchLLM } = require('./llm.service');
 
 async function connectToWhatsApp() {
   try {
@@ -64,8 +65,11 @@ async function connectToWhatsApp() {
         return;
       }
 
+      // Obtener respuesta del LLM
+      const llmResponse = await fetchLLM(message);
+
       // Enviar el mensaje de respuesta
-      const reply = `${BOT_PREFIX}\nHola, recibí tu mensaje "${message}"`;
+      const reply = `${BOT_PREFIX}:\n${llmResponse}`;
       await sock.sendMessage(chunk.key.remoteJid, { text: reply });
       console.log('Mensaje enviado por el bot:', reply);
     });
