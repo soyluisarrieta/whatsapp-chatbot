@@ -1,4 +1,4 @@
-const { LLM } = require('./config');
+const { LLM } = require('../config');
 
 async function fetchLLM(message) {
   try {

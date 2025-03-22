@@ -2,7 +2,7 @@ require('dotenv').config();
 const { AUTH_INFO, ALLOWED_CHAT_IDS, BOT_PREFIX } = require('./config');
 const { useMultiFileAuthState, makeWASocket } = require('baileys');
 const qrcode = require('qrcode-terminal');
-const { fetchLLM } = require('./llm.service');
+const { fetchLLM } = require('./services/llm.service');
 
 async function connectToWhatsApp() {
   try {
